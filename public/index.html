@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DVM - Department of Visual Media</title>
+    <meta name="description" content="Empowering the Future through Visual Innovation">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Background Canvas -->
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <ul class="nav-list">
+            <li><a href="#home" data-section="home">Home</a></li>
+            <li><a href="#about" data-section="about">About</a></li>
+            <li><a href="#projects" data-section="projects">Projects</a></li>
+            <li><a href="#topics" data-section="topics">Topics</a></li>
+            <li><a href="#skills" data-section="skills">Skills</a></li>
+            <li><a href="#join" data-section="join">Join Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="mobile-nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-nav-menu">
+            <a href="#home" data-section="home">Home</a>
+            <a href="#about" data-section="about">About</a>
+            <a href="#projects" data-section="projects">Projects</a>
+            <a href="#topics" data-section="topics">Topics</a>
+            <a href="#skills" data-section="skills">Skills</a>
+            <a href="#join" data-section="join">Join Us</a>
+        </div>
+    </div>
+
+    <!-- Horizontal Scrolling Container -->
+    <div class="scroll-container" id="scroll-container">
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="logo-container">
+                        <img src="/logo.png" alt="DVM Logo" class="logo">
+                    </div>
+                    <h1 class="hero-title">DVM</h1>
+                    <p class="hero-subtitle">DEPARTMENT OF VISUAL MEDIA</p>
+                    <p class="hero-description">Empowering the Future through Visual Innovation</p>
+                    <div class="scroll-indicator">
+                        <span>Scroll horizontally to explore</span>
+                        <div class="scroll-arrow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>We are a unique learning community where there are no traditional teachers - just passionate learners working together to master web development and visual media.</p>
+                        <p>Through peer-to-peer learning and hands-on projects, we create an environment where everyone teaches and everyone learns.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Our Philosophy</h3>
+                        <p>Learning is not a one-way street. In our community, knowledge flows freely between all members, creating a dynamic ecosystem of growth and innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon">🌐</div>
+                        <h3>Web Development</h3>
+                        <p>Creating innovative web experiences with cutting-edge technologies</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">🎨</div>
+                        <h3>3D Graphics</h3>
+                        <p>Pushing the boundaries of web graphics with Three.js and WebGL</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">✨</div>
+                        <h3>Interactive Design</h3>
+                        <p>Building engaging user interfaces that tell compelling stories</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon">🚀</div>
+                        <h3>Digital Innovation</h3>
+                        <p>Exploring new frontiers in digital media and technology</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topics Section -->
+        <section id="topics" class="section">
+            <div class="container">
+                <h2 class="section-title">What We Do</h2>
+                <div class="topics-content">
+                    <p class="topics-description">Exploring the intersection of technology and creativity</p>
+                    <div class="topics-grid">
+                        <div class="topic-item">
+                            <div class="topic-icon">📚</div>
+                            <h3>Learn</h3>
+                            <p>Continuous learning through collaboration</p>
+                        </div>
+                        <div class="topic-item">
+                            <div class="topic-icon">🎯</div>
+                            <h3>Create</h3>
+                            <p>Building innovative digital experiences</p>
+                        </div>
+                        <div class="topic-item">
+                            <div class="topic-icon">🤝</div>
+                            <h3>Share</h3>
+                            <p>Knowledge sharing within our community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Expertise</h2>
+                <p class="skills-description">Mastering the tools of tomorrow</p>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>React & Next.js</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>Three.js & WebGL</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>TypeScript</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>Node.js</span>
+                            <span>82%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="82"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>UI/UX Design</span>
+                            <span>87%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="87"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span>3D Modeling</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Us Section -->
+        <section id="join" class="section">
+            <div class="container">
+                <h2 class="section-title">Join Us</h2>
+                <div class="join-grid">
+                    <div class="join-content">
+                        <h3>Be part of our creative journey</h3>
+                        <p>Ready to join a community of passionate creators and innovators? We're always looking for motivated individuals who want to learn, grow, and contribute to the future of visual media.</p>
+                        <ul class="benefits-list">
+                            <li>Collaborative learning environment</li>
+                            <li>Hands-on project experience</li>
+                            <li>Peer-to-peer mentorship</li>
+                            <li>Access to cutting-edge tools</li>
+                        </ul>
+                    </div>
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" placeholder="Tell us about yourself and your interests" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span class="btn-text">Apply Now</span>
+                                <div class="loading-spinner" style="display: none;"></div>
+                            </button>
+                            <div id="form-status" class="form-status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <button class="nav-dot active" data-section="home"></button>
+        <button class="nav-dot" data-section="about"></button>
+        <button class="nav-dot" data-section="projects"></button>
+        <button class="nav-dot" data-section="topics"></button>
+        <button class="nav-dot" data-section="skills"></button>
+        <button class="nav-dot" data-section="join"></button>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
