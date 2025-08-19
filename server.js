@@ -11,6 +11,9 @@ require("dotenv").config()
 const app = express()
 const PORT = process.env.SERVER_PORT || 3000
 
+// Trust proxy - IMPORTANT for deployment on Render, Vercel, Heroku, etc.
+app.set("trust proxy", 1)
+
 // Rate limiting
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -19,6 +22,8 @@ const contactLimiter = rateLimit({
     success: false,
     message: "Too many contact form submissions, please try again later.",
   },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 
 // Middleware
@@ -221,6 +226,8 @@ app.get("/health", (req, res) => {
     service: "DVM Website Server",
     timestamp: new Date().toISOString(),
     emailEnabled: emailEnabled,
+    environment: process.env.NODE_ENV || "development",
+    trustProxy: app.get("trust proxy"),
   })
 })
 
@@ -234,13 +241,13 @@ app.post(
     }
 
     const { name, email, message } = req.body
-    const ipAddress = req.ip || req.connection.remoteAddress
-    const userAgent = req.get("User-Agent")
+    const ipAddress = req.ip || req.connection.remoteAddress || "unknown"
+    const userAgent = req.get("User-Agent") || "unknown"
 
     try {
       // Always save to database
       const messageId = await saveMessage(name, email, message, ipAddress, userAgent)
-      console.log(`✅ Message saved with ID: ${messageId}`)
+      console.log(`✅ Message saved with ID: ${messageId} from IP: ${ipAddress}`)
 
       // Try to send email (won't fail if email is disabled)
       await sendContactEmail(name, email, message)
@@ -316,7 +323,9 @@ app.listen(PORT, () => {
   console.log(`🚀 DVM Website Server is running on port ${PORT}`)
   console.log(`🌐 Website: http://localhost:${PORT}`)
   console.log(`❤️  Health check: http://localhost:${PORT}/health`)
-  console.log(`📊 Admin: http://localhost:${PORT}/admin/messages?key= your super secret key`)
+  console.log(`📊 Admin: http://localhost:${PORT}/admin/messages?key=${process.env.ADMIN_KEY}`)
+  console.log(`🔧 Trust proxy: ${app.get("trust proxy")}`)
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`)
 })
 
 // Graceful shutdown
@@ -334,7 +343,7 @@ process.on("SIGTERM", () => {
 
 process.on("uncaughtException", (err) => {
   console.error("Uncaught Exception:", err)
-  db.close((closeErr) => {  
+  db.close((closeErr) => {
     if (closeErr) {
       console.error("Error closing database:", closeErr)
     }
