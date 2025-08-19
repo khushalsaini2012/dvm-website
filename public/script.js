@@ -118,7 +118,6 @@ function initializeBackgroundCanvas() {
 // Navigation
 function initializeNavigation() {
   const navLinks = document.querySelectorAll(".nav-list a, .mobile-nav-menu a")
-  const navDots = document.querySelectorAll(".nav-dot")
   const mobileToggle = document.querySelector(".mobile-nav-toggle")
   const mobileMenu = document.querySelector(".mobile-nav-menu")
 
@@ -132,13 +131,6 @@ function initializeNavigation() {
       if (mobileMenu) {
         mobileMenu.style.display = "none"
       }
-    })
-  })
-
-  navDots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-      const targetSection = dot.getAttribute("data-section")
-      scrollToSection(targetSection)
     })
   })
 
@@ -214,13 +206,7 @@ function updateActiveNavigation() {
     }
   })
 
-  // Update nav dots
-  document.querySelectorAll(".nav-dot").forEach((dot, index) => {
-    dot.classList.remove("active")
-    if (index === currentSection) {
-      dot.classList.add("active")
-    }
-  })
+  
 }
 
 function updateProgressBar() {
