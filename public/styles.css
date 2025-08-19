@@ -958,6 +958,7 @@ body {
     width: 100%;
     max-width: 100%;
     margin-top: 0.5rem; /* Small top margin */
+    margin-bottom: 0.5rem; /* Small bottom margin */
   }
 
   .contact-form-container {
