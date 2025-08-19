@@ -322,8 +322,8 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 DVM Website Server is running on port ${PORT}`)
   console.log(`🌐 Website: http://localhost:${PORT}`)
-  console.log(`❤️  Health check: http://localhost:${PORT}/health`)
-  console.log(`📊 Admin: http://localhost:${PORT}/admin/messages?key=${process.env.ADMIN_KEY}`)
+  console.log(`❤️  Health check: https://dvm-official.onrender.com/health`)
+  console.log(`📊 Admin: https://dvm-official.onrender.com/admin/messages?key= your super secret key`)
   console.log(`🔧 Trust proxy: ${app.get("trust proxy")}`)
   console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`)
 })
