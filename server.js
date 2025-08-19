@@ -9,10 +9,11 @@ const rateLimit = require("express-rate-limit")
 require("dotenv").config()
 
 const app = express()
-const PORT = process.env.SERVER_PORT || 3000
 
-// Trust proxy - IMPORTANT for deployment on Render, Vercel, Heroku, etc.
+// IMPORTANT: Trust proxy MUST be set before any rate limiting or middleware
 app.set("trust proxy", 1)
+
+const PORT = process.env.SERVER_PORT || 3000
 
 // Rate limiting
 const contactLimiter = rateLimit({
@@ -24,6 +25,15 @@ const contactLimiter = rateLimit({
   },
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  // Explicitly handle proxy scenarios
+  keyGenerator: (req) => {
+    return req.ip || req.connection.remoteAddress || "unknown"
+  },
+  // Skip rate limiting if we can't determine IP
+  skip: (req) => {
+    const ip = req.ip || req.connection.remoteAddress
+    return !ip || ip === "unknown"
+  },
 })
 
 // Middleware
@@ -322,8 +332,8 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 DVM Website Server is running on port ${PORT}`)
   console.log(`🌐 Website: http://localhost:${PORT}`)
-  console.log(`❤️  Health check: https://dvm-official.onrender.com/health`)
-  console.log(`📊 Admin: https://dvm-official.onrender.com/admin/messages?key= your super secret key`)
+  console.log(`❤️  Health check: http://localhost:${PORT}/health`)
+  console.log(`📊 Admin: http://localhost:${PORT}/admin/messages?key=${process.env.ADMIN_KEY}`)
   console.log(`🔧 Trust proxy: ${app.get("trust proxy")}`)
   console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`)
 })
